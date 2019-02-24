@@ -1,6 +1,6 @@
 {
     "name": "vuex-action-init",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Vuex - Add tools to the Action context",
     "main": "dist/vuex-action-init.umd.js",
     "module": "dist/vuex-action-init.esm.js",
