@@ -1,6 +1,6 @@
-function dispatchINIT (store, context) {
+async function dispatchINIT (store, context) {
     try {
-        store.dispatch('INIT', context)
+        await store.dispatch('INIT', context)
     } catch (err) {
         throw new Error('error occurred when calling INIT: ', err.message)
     }

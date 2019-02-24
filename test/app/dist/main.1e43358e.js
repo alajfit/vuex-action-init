@@ -9919,6 +9919,8 @@ render._withStripped = true
       }
     })();
 },{"vue-hot-reload-api":"../../node_modules/vue-hot-reload-api/dist/index.js","vue":"../../node_modules/vue/dist/vue.runtime.esm.js"}],"../../package.json":[function(require,module,exports) {
+"use strict";
+
 module.exports = {
   "name": "vuex-action-init",
   "version": "0.0.1",
@@ -9961,7 +9963,9 @@ module.exports = {
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
+    "babel-runtime": "^6.26.0",
     "eslint": "^5.14.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
@@ -9988,7 +9992,8 @@ module.exports = {
   "peerDependencies": {
     "vue": "2.x",
     "vuex": "3.x"
-  }
+  },
+  "browserslist": ["since 2017-06"]
 };
 },{}],"../../src/index.js":[function(require,module,exports) {
 "use strict";
@@ -9998,9 +10003,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = vuexActionInit;
 
-function dispatchINIT(store, context) {
+async function dispatchINIT(store, context) {
   try {
-    store.dispatch('INIT', context);
+    await store.dispatch('INIT', context);
   } catch (err) {
     throw new Error('error occurred when calling INIT: ', err.message);
   }
@@ -10012,8 +10017,8 @@ function dispatchINIT(store, context) {
 
 
 function vuexActionInit() {
-  var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return function (store) {
+  let context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return store => {
     if (store._actions && store._actions.INIT) {
       dispatchINIT(store, context);
     }
@@ -10025,52 +10030,61 @@ function vuexActionInit() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
 
-var _vuex = _interopRequireDefault(require("vuex"));
-
-var _package = require("../../../../package.json");
-
-var _src = _interopRequireDefault(require("../../../../src"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _default() {
-  console.log('Store');
-  return new _vuex.default.Store({
+exports.default = function () {
+  return new _vuex2.default.Store({
     state: {
       name: null
     },
     actions: {
-      INIT: function INIT() {
+      INIT() {
         console.log('Initialising');
       }
+
     },
-    plugins: [(0, _src.default)()]
+    plugins: [(0, _src2.default)()]
   });
-}
+};
+
+var _vuex = require("vuex");
+
+var _vuex2 = _interopRequireDefault(_vuex);
+
+var _package = require("../../../../package.json");
+
+var _src = require("../../../../src");
+
+var _src2 = _interopRequireDefault(_src);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 },{"vuex":"../../node_modules/vuex/dist/vuex.esm.js","../../../../package.json":"../../package.json","../../../../src":"../../src/index.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
-var _vue = _interopRequireDefault(require("vue"));
+var _vue = require("vue");
 
-var _vuex = _interopRequireDefault(require("vuex"));
+var _vue2 = _interopRequireDefault(_vue);
 
-var _App = _interopRequireDefault(require("./App.vue"));
+var _vuex = require("vuex");
 
-var _store = _interopRequireDefault(require("./store"));
+var _vuex2 = _interopRequireDefault(_vuex);
+
+var _App = require("./App.vue");
+
+var _App2 = _interopRequireDefault(_App);
+
+var _store = require("./store");
+
+var _store2 = _interopRequireDefault(_store);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue.default.use(_vuex.default);
+_vue2.default.use(_vuex2.default);
 
-var store = (0, _store.default)();
-new _vue.default({
+const store = (0, _store2.default)();
+new _vue2.default({
   el: '#app',
-  store: store,
-  render: function render(h) {
-    return h(_App.default);
-  }
+  store,
+  render: h => h(_App2.default)
 });
 },{"vue":"../../node_modules/vue/dist/vue.runtime.esm.js","vuex":"../../node_modules/vuex/dist/vuex.esm.js","./App.vue":"src/App.vue","./store":"src/store/index.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -10099,7 +10113,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54085" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56953" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

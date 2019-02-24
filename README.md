@@ -12,3 +12,37 @@ I found to initiate state for a Vuex store and Vuex store module is quite awkard
 * add a check for an INIT action
 * When INIT found run before anything else
 * When INIT found in SSR have it load before anything else
+
+## Install
+
+```bash
+npm install vuex-action-init --save
+```
+
+## Usage
+
+### Use in a Vue App
+> INIT method is called during load
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
+import App from './App.vue'
+import vuexActionInit from 'vuex-action-init'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  actions: {
+    INIT () {
+      console.log('Initalizing')
+    }
+  },
+  plugins: [vuexActionInit()]
+})
+
+new Vue({
+  el: '#app',
+  store,
+  render: h => h(App)
+})
+```
