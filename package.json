@@ -1,0 +1,75 @@
+{
+    "name": "vuex-action-init",
+    "version": "1.0.0",
+    "description": "Vuex - Add tools to the Action context",
+    "main": "dist/vuex-action-init.umd.js",
+    "module": "dist/vuex-action-init.esm.js",
+    "unpkg": "dist/vuex-action-init.min.js",
+    "scripts": {
+        "boot": "rm -rf node_modules && npm i",
+        "build:browser": "parcel build src/index.js --out-dir dist --out-file vuex-action-init.min.js --target browser",
+        "build:es": "parcel build src/index.js --out-dir dist --out-file vuex-action-init.esm.js --target electron",
+        "build:umd": "parcel build src/index.js --out-dir dist --out-file vuex-action-init.umd.js --target node",
+        "build": "npm run build:browser && npm run build:es && npm run build:umd",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs",
+        "docs:deploy": "gh-pages -d docs/.vuepress/dist",
+        "demo": "parcel test/app/index.html --out-dir test/app/dist",
+        "lint": "eslint --ext .js src",
+        "test": "rm -rf test/unit/coverage && jest --config=test/unit/jest.config.js",
+        "release": "release-it"
+    },
+    "gitHooks": {
+        "pre-commit": "lint-staged"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alajfit/vuex-action-init.git"
+    },
+    "keywords": [
+        "vue",
+        "vuex",
+        "vuex-plugin"
+    ],
+    "author": "Alan J. Fitzpatrick <alajfit@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/alajfit/vuex-action-init/issues"
+    },
+    "homepage": "https://github.com/alajfit/vuex-action-init#readme",
+    "devDependencies": {
+        "@vue/component-compiler-utils": "^2.6.0",
+        "@vue/test-utils": "^1.0.0-beta.29",
+        "babel-core": "^6.26.3",
+        "babel-eslint": "^10.0.1",
+        "babel-jest": "^24.1.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "eslint": "^5.14.1",
+        "eslint-config-standard": "^12.0.0",
+        "eslint-plugin-import": "^2.16.0",
+        "eslint-plugin-node": "^8.0.1",
+        "eslint-plugin-promise": "^4.0.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "gh-pages": "^2.0.1",
+        "jest": "^24.1.0",
+        "lint-staged": "^8.1.4",
+        "moment": "^2.24.0",
+        "node-sass": "^4.11.0",
+        "parcel-bundler": "^1.11.0",
+        "release-it": "^10.1.0",
+        "sass": "^1.17.2",
+        "sass-loader": "^7.1.0",
+        "vue": "^2.6.7",
+        "vue-hot-reload-api": "^2.3.3",
+        "vue-template-compiler": "^2.6.7",
+        "vuepress": "^0.14.8",
+        "vuex": "^3.1.0",
+        "webpack": "4.28.4",
+        "yorkie": "^2.0.0"
+    },
+    "peerDependencies": {
+        "vue": "2.x",
+        "vuex": "3.x"
+    }
+}
