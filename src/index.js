@@ -1,10 +1,19 @@
+function dispatchINIT (store, context) {
+    try {
+        store.dispatch('INIT', context)
+    } catch (err) {
+        throw new Error('error occurred when calling INIT: ', err.message)
+    }
+}
 
 /**
  * @name Init
  * @description Initalise State and all Dynmaic Module State
  */
-export default function Init () {
+export default function vuexActionInit (context = {}) {
     return store => {
-        console.log('Init')
+        if (store._actions && store._actions.INIT) {
+            dispatchINIT(store, context)
+        }
     }
 }
